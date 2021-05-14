@@ -21,8 +21,12 @@ function preload() {
    
     gameState.cursors = this.input.keyboard.createCursorKeys();
     
-    // Add your code below:
-    
+    const bugs = this.physics.add.group();
+    function bugGen(){
+      const xCoord = Math.random() * 450;
+      bugs.create(xCoord, 10, 'bug1'); 
+    };
+    bugGen();
   }
   
   function update() {
