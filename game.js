@@ -22,6 +22,7 @@ function preload() {
     gameState.cursors = this.input.keyboard.createCursorKeys();
     
     // Add your code below:
+    console.log('hello');
     
   }
   
