@@ -22,11 +22,23 @@ function preload() {
     gameState.cursors = this.input.keyboard.createCursorKeys();
     
     const bugs = this.physics.add.group();
+
     function bugGen(){
       const xCoord = Math.random() * 450;
       bugs.create(xCoord, 10, 'bug1'); 
     };
-    bugGen();
+    
+    // setInterval(bugGen, 100);
+    const generateBugs = this.time.addEvent({
+      callback: bugGen,
+      delay: 150,
+      callbackScope: this,
+      loop: true
+    });
+
+    this.physics.add.collider(bugs, platforms, function(bug){
+      bug.destroy();
+    })
   }
   
   function update() {
