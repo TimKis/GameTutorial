@@ -6,7 +6,9 @@ function preload() {
     this.load.image('codey', 'https://content.codecademy.com/courses/learn-phaser/physics/codey.png');
   }
   
-  const gameState = {};
+  const gameState = {
+    score: 0
+  };
   
   function create() {
     gameState.player = this.physics.add.sprite(225, 440, 'codey').setScale(.5);
@@ -35,9 +37,13 @@ function preload() {
       callbackScope: this,
       loop: true
     });
-
+    
+    gameState.scoreText = this.add.text(195, 485, `Score: 0`, {fontSize: '15px', fill: '#000000'});
     this.physics.add.collider(bugs, platforms, function(bug){
       bug.destroy();
+
+      gameState.score += 5;
+      gameState.scoreText.setText(`Score: ${gameState.score}`);
     })
   }
   
