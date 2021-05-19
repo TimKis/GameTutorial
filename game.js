@@ -50,7 +50,12 @@ function preload() {
       generateBugs.destroy();
       this.physics.pause();
       this.add.text(150, 250, 'Game Over', { fontSize: '25px', fill: '#56594c' });
-    })
+      this.add.text(125, 280, 'Click to restart Game', {fontSize: '15px', fill: '#56594c'});
+      this.input.on('pointerup', () => {
+        gameState.score = 0;
+        this.scene.restart();
+      });
+    }); 
   }
   
   function update() {
