@@ -32,8 +32,8 @@ function preload() {
     
     // setInterval(bugGen, 100);
     const generateBugs = this.time.addEvent({
-      callback: bugGen,
       delay: 150,
+      callback: bugGen,
       callbackScope: this,
       loop: true
     });
@@ -44,6 +44,12 @@ function preload() {
 
       gameState.score += 5;
       gameState.scoreText.setText(`Score: ${gameState.score}`);
+    });
+
+    this.physics.add.collider(gameState.player, bugs, () => {
+      generateBugs.destroy();
+      this.physics.pause();
+      this.add.text(150, 250, 'Game Over', { fontSize: '25px', fill: '#56594c' });
     })
   }
   
